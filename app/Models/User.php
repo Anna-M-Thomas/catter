@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function meows() {
+        return $this->hasMany('App\Models\Meow','user_id','id');
+    }
 }
