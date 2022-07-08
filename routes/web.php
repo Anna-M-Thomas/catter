@@ -3,8 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\MeowController;
 
 
 
@@ -19,11 +19,8 @@ use App\Http\Controllers\TimelineController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\TimelineController@index')->middleware(['auth', 'verified']);
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', 'App\Http\Controllers\TimelineController@index')->name('timeline')->middleware(['auth', 'verified']);
+Route::post('/meow', 'App\Http\Controllers\MeowController@store')->middleware(['auth', 'verified']);
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome');

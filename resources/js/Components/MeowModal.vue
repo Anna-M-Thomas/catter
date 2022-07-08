@@ -18,18 +18,20 @@
                            X
                         </button>
                         <div className="mt-2 text-center sm:ml-4 sm:text-left">
-                            <textarea className="mt-2 text-[15px] w-full" maxlength=250 placeholder="Enter your meow here"/>
-                            Preview
-                            <textarea className="mt-2 text-[15px] w-full" disabled placeholder="meow"/>
-                            <div className="justify-end items-center gap-2 mt-3 sm:flex">
-                                
-                                <button
-                                    className="mt-2 p-2.5 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600"
-                                    @click="hideModal"
-                                >
-                                    MEOW
-                                </button>
-                            </div>
+                            <form @submit.prevent="postMeow">
+                                <textarea className="mt-2 text-[15px] w-full" maxlength=250 v-model="form.message" placeholder="Enter your meow here"/>
+                                Preview
+                                <textarea className="mt-2 text-[15px] w-full" disabled placeholder="meow"/>
+                                <div className="justify-end items-center gap-2 mt-3 sm:flex">
+                                    
+                                    <button
+                                        className="mt-2 p-2.5 text-gray-800 rounded-md outline-none border ring-offset-2 ring-indigo-600"
+                                        :disabled="form.processing"
+                                    >
+                                        MEOW
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -45,14 +47,22 @@ export default {
     props: ['user'],
     data(){
         return {
-            showModal: false
+            showModal: false,
+            form: this.$inertia.form({
+                message: '',
+            }),
         }
     },
     methods: {
-        hideModal(){
-            console.log("meow");
-            console.log(this.user);
-        },
+        postMeow(){
+            this.form
+            .transform((data) => ({
+                ...data,
+                message: '', // transform whatever message it was to meow for now
+            }))
+            .post('/meow');
+            this.showModal = false;
+        }
     }
 };
 </script>

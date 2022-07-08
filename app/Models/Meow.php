@@ -9,6 +9,8 @@ class Meow extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['message', 'user_id'];
+
     public function users()
     {
         return $this->belongsTo('App\Models\User');
