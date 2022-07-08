@@ -11,8 +11,8 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCat } from "@fortawesome/free-solid-svg-icons";
-library.add(faCat)
+import { faCat, faPaw } from "@fortawesome/free-solid-svg-icons";
+library.add(faCat, faPaw)
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
