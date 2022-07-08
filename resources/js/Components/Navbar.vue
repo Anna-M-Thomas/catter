@@ -4,6 +4,9 @@
     <nav class="bg-gray-800">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-16">
+            <font-awesome-icon icon="fa-solid fa-cat" />
+            <i class="fa-solid fa-cat"></i>
+
         
             <div class="absolute inset-y-0 right-0 flex items-center ml-6 pr-0 inset-auto static">
                 <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -17,9 +20,10 @@
                 <!-- Profile dropdown -->
                 <div class="ml-3 relative">
                 <div>
-                    <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @click="showMenu = !showMenu">
+                    <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @click="showMenu = !showMenu">
                     <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" id="user_img" src="https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    <font-awesome-icon id="user_img" icon="cat" size="2x" inverse/>
+                    <!-- <img class="h-8 w-8 rounded-full" id="user_img" src="https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                     </button>
                 </div>
                 <!--
