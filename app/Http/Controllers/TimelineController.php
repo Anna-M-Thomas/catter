@@ -12,7 +12,7 @@ class TimelineController extends Controller
 {
     public function index(Request $request){
         $user = Auth::user();
-        $all_meows = Meow::select(['meows.*'])->with('users')->get();
+        $all_meows = Meow::with('users')->get();
 
         return Inertia::render('Timeline', [
             'user' => $user,
