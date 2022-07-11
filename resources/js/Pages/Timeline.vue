@@ -12,7 +12,13 @@
                         </div>
                         <span v-if="meow.created_at">{{getFormattedDate(meow.created_at)}}</span>
                     </div>
-                    <span>{{meow.message}}</span>
+                    <div class="flex justify-between">
+                        <span>{{meow.message}}</span>
+                        <button v-if="meow.user_id==user.id">
+                            <span class="sr-only">Delete this meow</span>
+                            <font-awesome-icon class="icon-color" icon="trash" @click="deleteMeow"/>
+                        </button>
+                    </div>
                 </li>
             </ul>
             <div v-else>
@@ -22,16 +28,18 @@
 
     </main>
     <MeowModal :user="user" />
+    <DeleteConfirmModal thing_to_delete="meow" ref="confirmDeleteModal"/>
 </template>
 
 
 <script>
     import AppLayout from '@/Layouts/AppLayout.vue'
     import MeowModal from '@/Components/MeowModal.vue';
+    import DeleteConfirmModal from '@/Components/DeleteConfirmModal.vue';
 
     export default {
         components: {
-            MeowModal
+            MeowModal, DeleteConfirmModal
         },
         props: ['user', 'all_meows'],
         data(){
@@ -47,6 +55,14 @@
             getFormattedDate(date_string){
                 const date = new Date(date_string);
                 return date.toDateString();
+            },
+            async deleteMeow(){
+                const confirm = await this.$refs.confirmDeleteModal.show();
+                if (confirm) {
+                    console.log("confirm!!");
+                } else {
+                    console.log("reject!!");
+                }
             }
         }
     };
