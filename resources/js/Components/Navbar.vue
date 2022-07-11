@@ -20,7 +20,7 @@
                 <!-- Profile dropdown -->
                 <div class="ml-3 relative">
                 <div>
-                    <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @click="showMenu = !showMenu">
+                    <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" @click="showMenu=!showMenu">
                     <span class="sr-only">Open user menu</span>
                     <font-awesome-icon id="user_img" icon="cat" size="2x" inverse/>
                     </button>
@@ -48,23 +48,12 @@ export default {
      components: {
         Link
     },
-    created() {
-        window.addEventListener('click', this.close)
-    },
-    beforeUnmount() {
-        window.removeEventListener('click', this.close)
-    },
     data() {
         return {
             showMenu: false
         }
     },
     methods: {
-        close(e){
-            if (e.target.id!=="user_img") {
-                this.showMenu = false;
-            }
-        }
     }
 };
 </script>
