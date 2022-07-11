@@ -1,13 +1,23 @@
 <template>
-    <main class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <main class="w-full sm:max-w-lg mt-6 px-3 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         <section class="common">
-            TEST
-            <font-awesome-icon icon="cat" size="2x" color="#E1FF00"/>
-            <ul>
-                <li v-for="meow in all_meows" :key="meow.id">
-                    {{meow.message}}
+            <ul v-if="all_meows.length > 0" class="bg-white rounded-lg border border-gray-200 text-gray-900">
+                <li v-for="meow in all_meows" :key="meow.id" 
+                class="px-6 py-2 border-b border-gray-200 w-full"
+                >
+                    <div class="flex justify-between">
+                        <div>
+                            <font-awesome-icon class="px-1" id="user_img" icon="cat" size="2x" :color="meow.users.icon_color" />
+                            <span class="font-bold">{{meow.users.name}}</span><br/>
+                        </div>
+                        <span v-if="meow.created_at">{{getFormattedDate(meow.created_at)}}</span>
+                    </div>
+                    <span>{{meow.message}}</span>
                 </li>
-            </ul>   
+            </ul>
+            <div v-else>
+                No meows yet!
+            </div>
         </section>
 
     </main>
@@ -24,10 +34,20 @@
             MeowModal
         },
         props: ['user', 'all_meows'],
+        data(){
+            return {
+            }
+        },
         layout: AppLayout,
         mounted(){
-            console.log(this.user);
+            //console.log(this.user);
             console.log(this.all_meows);
         },
+        methods:{
+            getFormattedDate(date_string){
+                const date = new Date(date_string);
+                return date.toDateString();
+            }
+        }
     };
 </script>
