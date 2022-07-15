@@ -1,6 +1,7 @@
 <template>
     <main class="w-full sm:max-w-lg mt-6 px-3 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         <section class="common">
+            <BreezeValidationErrors class="mb-4" />
             <ul v-if="all_meows.length > 0" class="bg-white rounded-lg border border-gray-200 text-gray-900">
                 <li v-for="meow in all_meows" :key="meow.id" 
                 class="px-6 py-2 border-b border-gray-200 w-full"
@@ -16,7 +17,7 @@
                         <span>{{meow.message}}</span>
                         <button v-if="meow.user_id==user.id">
                             <span class="sr-only">Delete this meow</span>
-                            <font-awesome-icon class="icon-color" icon="trash" @click="deleteMeow"/>
+                            <font-awesome-icon class="icon-color" icon="trash" @click="deleteMeow(meow.id)"/>
                         </button>
                     </div>
                 </li>
@@ -36,12 +37,13 @@
     import AppLayout from '@/Layouts/AppLayout.vue'
     import MeowModal from '@/Components/MeowModal.vue';
     import DeleteConfirmModal from '@/Components/DeleteConfirmModal.vue';
+    import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 
     export default {
         components: {
-            MeowModal, DeleteConfirmModal
+            MeowModal, DeleteConfirmModal, BreezeValidationErrors
         },
-        props: ['user', 'all_meows'],
+        props: ['user', 'all_meows', 'errors'],
         data(){
             return {
             }
@@ -49,20 +51,17 @@
         layout: AppLayout,
         mounted(){
             //console.log(this.user);
-            console.log(this.all_meows);
         },
         methods:{
             getFormattedDate(date_string){
                 const date = new Date(date_string);
                 return date.toDateString();
             },
-            async deleteMeow(){
+            async deleteMeow(id){
                 const confirm = await this.$refs.confirmDeleteModal.show();
                 if (confirm) {
-                    console.log("confirm!!");
-                } else {
-                    console.log("reject!!");
-                }
+                    this.$inertia.delete(this.route("meow.delete", {"id": id}));
+                } 
             }
         }
     };

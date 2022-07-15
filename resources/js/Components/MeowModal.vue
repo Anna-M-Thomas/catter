@@ -1,6 +1,6 @@
 <template>
 
-    <button type="button" class="bg-gray-800 p-3 flex text-sm rounded-full focus:outline-none" aria-expanded="false" aria-haspopup="false" @click="showModal=true">
+    <button type="button" class="fixed right-20 bottom-10 bg-gray-800 p-3 flex text-sm rounded-full focus:outline-none" aria-expanded="false" aria-haspopup="false" @click="showModal=true">
         <span class="sr-only">Post a new meow</span>
         <font-awesome-icon class="icon-color" id="test" icon="paw" size="3x" inverse/>
     </button>

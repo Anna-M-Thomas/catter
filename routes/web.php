@@ -21,6 +21,7 @@ use App\Http\Controllers\MeowController;
 
 Route::get('/', 'App\Http\Controllers\TimelineController@index')->name('timeline')->middleware(['auth', 'verified']);
 Route::post('/meow', 'App\Http\Controllers\MeowController@store')->middleware(['auth', 'verified']);
+Route::delete('/meow/{id}', 'App\Http\Controllers\MeowController@delete')->name('meow.delete')->middleware(['auth', 'verified']);
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome');
