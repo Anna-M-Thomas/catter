@@ -20,6 +20,8 @@ use App\Http\Controllers\MeowController;
 */
 
 Route::get('/', 'App\Http\Controllers\TimelineController@index')->name('timeline')->middleware(['auth', 'verified']);
+Route::get('/profile', 'App\Http\Controllers\TimelineController@detail')->name('user_profile')->middleware(['auth', 'verified']);
+
 Route::post('/meow', 'App\Http\Controllers\MeowController@store')->middleware(['auth', 'verified']);
 Route::delete('/meow/{id}', 'App\Http\Controllers\MeowController@delete')->name('meow.delete')->middleware(['auth', 'verified']);
 

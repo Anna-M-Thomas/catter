@@ -19,4 +19,14 @@ class TimelineController extends Controller
             'all_meows' => $all_meows
         ]);
     }
+
+    public function detail(Request $request){
+        $user = Auth::user();
+        $all_meows = Meow::whereBelongsTo($user, 'users')->with('users')->get();
+
+        return Inertia::render('Timeline', [
+            'user' => $user,
+            'all_meows' => $all_meows
+        ]);
+    }
 }
